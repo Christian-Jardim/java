@@ -1,3 +1,3 @@
-public enum Nivel {
-BAIXO, MEDIO, ALTO;
+public enum Descricao {
+	ARROZ, FEIJAO, FARINHA, LEITE;
 }
