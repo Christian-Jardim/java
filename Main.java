@@ -30,8 +30,9 @@ class Cliente {
 		CPF = cpf;
 	}
 	
-	public void seApressentar (){
-	    System.out.println("\n Meu nome e: " + nome + " \n" + " Meu CPF e: " + CPF);
+	public void seApresentar (){
+	    System.out.println("\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF);
+	    //return "\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF;
 	}
 }
 
@@ -48,10 +49,10 @@ public class Main {
 			switch(op) {
 			case 1:
 				c = recebeCliente(input);
-				c.seApressentar();
+				c.seApresentar();
+				//System.out.println("%s",c.seApresentar());
 				break;
 			}
-
 		} while (op != 0);
 	}
 
@@ -69,9 +70,9 @@ public class Main {
 	}
 
 	public static Cliente recebeCliente(Scanner input) {
-		System.out.print(" \nCliente:\nDigite o nome do Cliente: ");
+		System.out.print("\n Cliente:\n Digite o nome do Cliente: ");
 		String nome = input.nextLine();
-		System.out.print("Digite o CPF do cliente: ");
+		System.out.print(" Digite o CPF do cliente: ");
 		String cpf = input.nextLine();
 		return (new Cliente(nome, cpf));
 	}
