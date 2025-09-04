@@ -30,9 +30,8 @@ class Cliente {
 		CPF = cpf;
 	}
 	
-	public void seApresentar (){
-	    System.out.println("\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF);
-	    //return "\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF;
+	public void seApresentar (){
+	    return "\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF;
 	}
 }
 
@@ -49,8 +48,7 @@ public class Main {
 			switch(op) {
 			case 1:
 				c = recebeCliente(input);
-				c.seApresentar();
-				//System.out.println("%s",c.seApresentar());
+				System.out.println(c.seApresentar());
 				break;
 			}
 		} while (op != 0);
