@@ -36,13 +36,48 @@ class Produto {
 }
 
 class Item {
-	private int quantidade;
+	public int quantidade;
+	public Descricao descricao;
+
+	public Item(int q, int t) {
+		quantidade = q;
+
+		switch(t) {
+		case 1:
+			descricao = Descricao.ARROZ;
+			break;
+		case 2:
+			descricao = Descricao.FEIJAO;
+			break;
+		case 3:
+			descricao = Descricao.FARINHA;
+			break;
+		case 4:
+			descricao = Descricao.LEITE;
+			break;
+		}
+	}
 }
 
 class Pedido {
 	private TipoPagamento pagamento;
-}
+	public LinkedList<Item> pedido;
 
+	public Pedido(int t, int q) {
+
+		switch(t) {
+		case 1:
+			pagamento = TipoPagamento.DINHEIRO;
+			break;
+		case 2:
+			pagamento = TipoPagamento.CARTAO;
+			break;
+		case 3:
+			pagamento = TipoPagamento.CHEQUE;
+			break;
+		}
+	}
+}
 class Cliente {
 	private String nome;
 	private String CPF;
@@ -59,12 +94,14 @@ class Cliente {
 
 public class Main {
 	public static void main(String[] args) {
-		int op;
+		int op,num,i;
+		i = 0;
 		Cliente c;
 		Produto p;
 		Item q;
 		Scanner input = new Scanner(System.in);
 		LinkedList<Produto> estoque = new LinkedList<Produto>();
+		LinkedList<Item> pedido = new LinkedList<Item>();
 
 		do {
 			op = menu(input);
@@ -72,6 +109,16 @@ public class Main {
 			case 1:
 				c = recebeCliente(input);
 				System.out.println(c.seApresentar());
+				System.out.print(" Informe a quantidade de itens do pedido: ");
+				num = input.nextInt();
+				while(i < num) {
+					System.out.print(" Produto:\n Digite o numero do produto (1-arroz 2-feijao 3-farinha 4-leite): ");
+					int tipo = input.nextInt();
+					System.out.print(" Digite a quantidade dele: ");
+					int quant = input.nextInt();
+					q = new Item(quant, tipo);
+					pedido.add(q);
+				}
 				break;
 			case 3:
 				p = recebeProduto(input);
@@ -108,12 +155,20 @@ public class Main {
 	}
 
 	public static Produto recebeProduto(Scanner input) {
-		System.out.print(" Digite o valor do produto: ");
+		System.out.print("\n Digite o valor do produto: ");
 		int valor = input.nextInt();
-		System.out.print("\n Produto:\n Digite o numro do produto (1-arroz 2-feijao 3-farinha 4-leite): ");
+		System.out.print(" Produto:\n Digite o numero do produto (1-arroz 2-feijao 3-farinha 4-leite): ");
 		int tipo = input.nextInt();
 		System.out.print(" Digite a quantidade do produto: ");
 		int quant = input.nextInt();
 		return (new Produto(tipo, valor, quant));
 	}
+
+	/*public static Produto informaProduto(Scanner inpunt, int q) {
+		int i;
+		while(i<q) {
+			System.out.print(" Produto:\n Digite o numero do produto (1-arroz 2-feijao 3-farinha 4-leite): ");
+			int tipo = input.nextInt();
+		}
+	}*/
 }
