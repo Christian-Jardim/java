@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.LinkedList;
 
 enum Descricao {
 	ARROZ, FEIJAO, FARINHA, LEITE;
@@ -9,9 +10,9 @@ enum TipoPagamento {
 }
 
 class Produto {
-	private Descricao descricao;
-	private double preco;
-	private int quantidadeEstoque;
+	public Descricao descricao;
+	public double preco;
+	public int quantidadeEstoque;
 
 	public Produto(int t, int v, int q) {
 		switch(t) {
@@ -51,7 +52,7 @@ class Cliente {
 		CPF = cpf;
 	}
 
-	public String seApresentar () {
+	public String seApresentar() {
 		return "\n Cliente -> Nome: " + nome + "\n\t    CPF: " + CPF;
 	}
 }
@@ -63,7 +64,8 @@ public class Main {
 		Produto p;
 		Item q;
 		Scanner input = new Scanner(System.in);
-        
+		LinkedList<Produto> estoque = new LinkedList<Produto>();
+
 		do {
 			op = menu(input);
 			switch(op) {
@@ -72,9 +74,16 @@ public class Main {
 				System.out.println(c.seApresentar());
 				break;
 			case 3:
-			     p = recebeProduto(input);
+				p = recebeProduto(input);
+				estoque.add(p);
 			}
 		} while (op != 0);
+
+		for (Produto produto : estoque) {
+			System.out.println(produto.descricao);
+			System.out.println(produto.preco);
+			System.out.println(produto.quantidadeEstoque);
+		}
 	}
 
 	public static int menu(Scanner input) {
